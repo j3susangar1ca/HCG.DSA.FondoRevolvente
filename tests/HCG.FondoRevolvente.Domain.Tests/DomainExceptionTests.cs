@@ -69,4 +69,42 @@ public class DomainExceptionTests
         Assert.Equal("ABCD****XXX", ex.DatosAdicionales["RfcProveedor"]); // Masked data
         Assert.Contains("150,000", ex.Message);
     }
+
+    [Fact]
+    public void CotizacionesInsuficientesException_SoportaMonto()
+    {
+        // Act
+        var ex = new CotizacionesInsuficientesException(2, 80_000m);
+
+        // Assert
+        Assert.Equal("RN003_COTIZACIONES_INSUFICIENTES", ex.CodigoError);
+        Assert.Equal(3, ex.CotizacionesRequeridas);
+        Assert.Equal(1, ex.CotizacionesFaltantes);
+    }
+
+    [Fact]
+    public void SatServicioNoDisponibleException_CalculaTiempoReintento()
+    {
+        // Act
+        var ex = new SatServicioNoDisponibleException(3);
+
+        // Assert
+        Assert.Equal("RN004_SAT_NO_DISPONIBLE", ex.CodigoError);
+        Assert.Equal(TimeSpan.FromMinutes(15), ex.TiempoReintentoSugerido); // Basado en LimitesNegocio.MinutosCircuitoAbierto
+    }
+
+    [Fact]
+    public void TransicionInvalidaException_GuardaEstados()
+    {
+        // Act
+        var ex = new TransicionInvalidaException(
+            Enums.EstadoSolicitud.Pagada, 
+            Enums.EstadoSolicitud.Recepcionado, 
+            "No se puede retroceder");
+
+        // Assert
+        Assert.Equal("TRANSICION_INVALIDA", ex.CodigoError);
+        Assert.Equal(Enums.EstadoSolicitud.Pagada, ex.EstadoActual);
+        Assert.Equal(Enums.EstadoSolicitud.Recepcionado, ex.EstadoDestino);
+    }
 }

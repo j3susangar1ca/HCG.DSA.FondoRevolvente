@@ -28,14 +28,14 @@ public class DomainException : Exception
         DatosAdicionales = new Dictionary<string, object>();
     }
 
-    public DomainException(string mensaje, Exception innerException)
+    public DomainException(string mensaje, Exception? innerException)
         : base(mensaje, innerException)
     {
         CodigoError = "DOMAIN_ERROR";
         DatosAdicionales = new Dictionary<string, object>();
     }
 
-    public DomainException(string codigoError, string mensaje, Exception innerException)
+    public DomainException(string codigoError, string mensaje, Exception? innerException)
         : base(mensaje, innerException)
     {
         CodigoError = codigoError;
