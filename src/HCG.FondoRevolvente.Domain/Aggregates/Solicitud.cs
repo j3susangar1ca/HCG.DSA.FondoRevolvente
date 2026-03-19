@@ -58,7 +58,8 @@ public class Solicitud
         Fase = FaseProceso.RecepcionValidacionInicial;
         FechaCreacion = DateTime.UtcNow;
 
-        RegistrarHito(TipoHito.Creacion, "Solicitud recepcionada e iniciada", solicitante);
+        RegistrarHito(TipoHito.RecepcionOficio, "Solicitud recepcionada e iniciada", solicitante);
+        RegistrarHito(TipoHito.AsignacionFolio, $"Folio asignado: {folio}", solicitante);
     }
 
     /// <summary>
@@ -73,7 +74,7 @@ public class Solicitud
         _cotizaciones.Add(cotizacion);
 
         Fase = FaseProceso.EstudioMercadoCotizacion;
-        RegistrarHito(TipoHito.DocumentoAdjunto, $"Cotización agregada por {monto}", usuario, archivoUri);
+        RegistrarHito(TipoHito.RecepcionCotizacionProveedor, $"Cotización agregada por {monto}", usuario, archivoUri);
     }
 
     /// <summary>
@@ -93,20 +94,20 @@ public class Solicitud
                 cot.DesmarcarComoGanadora();
         }
 
-        RegistrarHito(TipoHito.CambioEstado, "Proveedor ganador seleccionado", usuario);
+        RegistrarHito(TipoHito.SeleccionProveedor, "Proveedor ganador seleccionado", usuario);
     }
 
     /// <summary>
     /// Cambia el estado de la solicitud validando la transición.
     /// </summary>
-    public void CambiarEstado(EstadoSolicitud nuevoEstado, string usuario, string? motivo = null)
+    public void CambiarEstado(EstadoSolicitud nuevoEstado, TipoHito hito, string usuario, string? motivo = null)
     {
         var mensaje = $"Cambio de estado: {Estado} -> {nuevoEstado}";
         if (!string.IsNullOrEmpty(motivo)) mensaje += $". Motivo: {motivo}";
 
         Estado = nuevoEstado;
-        Fase = nuevoEstado.ObtenerFase(); // Actualizar fase automáticamente basada en el estado
-        RegistrarHito(TipoHito.CambioEstado, mensaje, usuario);
+        Fase = nuevoEstado.ObtenerFase(); 
+        RegistrarHito(hito, mensaje, usuario);
     }
 
     private void RegistrarHito(TipoHito tipo, string mensaje, string usuario, string? adjunto = null)
