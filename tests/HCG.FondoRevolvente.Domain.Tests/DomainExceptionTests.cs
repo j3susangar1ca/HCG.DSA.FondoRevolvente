@@ -38,7 +38,7 @@ public class DomainExceptionTests
         var ex = new MontoExcedidoException(80_000m, 75_000m);
 
         // Assert
-        Assert.Equal("MONTO_EXCEDIDO_RN001", ex.CodigoError);
+        Assert.Equal("RN001_MONTO_EXCEDIDO", ex.CodigoError);
         Assert.Contains("80,000", ex.Message);
     }
 
@@ -50,5 +50,22 @@ public class DomainExceptionTests
 
         // Assert
         Assert.Equal("BLOQUEO_EDICION_RN005", ex.CodigoError);
+    }
+
+    [Fact]
+    public void FraccionamientoDetectadoException_TieneCodigoYMascarraCorrectos()
+    {
+        // Act
+        var ex = new FraccionamientoDetectadoException(
+            "ABCD123456XXX", 
+            150_000m, 
+            2, 
+            90, 
+            new[] { "FOL-1", "FOL-2" });
+
+        // Assert
+        Assert.Equal("RN002_FRACCIONAMIENTO_DETECTADO", ex.CodigoError);
+        Assert.Equal("ABCD****XXX", ex.RfcProveedor);
+        Assert.Contains("150,000", ex.Message);
     }
 }

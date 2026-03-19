@@ -1,6 +1,7 @@
 using HCG.FondoRevolvente.Domain.Aggregates;
 using HCG.FondoRevolvente.Domain.Exceptions;
 using HCG.FondoRevolvente.Domain.Interfaces;
+using HCG.FondoRevolvente.Domain.Constants;
 
 namespace HCG.FondoRevolvente.Domain.Services;
 
@@ -35,7 +36,12 @@ public class ValidadorFraccionamientoService
 
         if (previa != null)
         {
-            throw new FraccionamientoDetectadoException(codigoProducto, previa.Folio.Valor);
+            throw new FraccionamientoDetectadoException(
+                rfcProveedor: "PENDIENTE", 
+                sumaOperaciones: 0, 
+                numeroOperaciones: 1, 
+                diasPeriodo: LimitesNegocio.MesesDeteccionFraccionamiento * 30,
+                foliosRelacionados: new[] { previa.Folio.Valor });
         }
     }
 }
