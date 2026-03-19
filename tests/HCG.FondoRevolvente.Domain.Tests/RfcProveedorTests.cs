@@ -69,7 +69,7 @@ public class RfcProveedorTests
     public void Enmascarado_MuestraFormatoCorrecto()
     {
         // Arrange
-        var rfc = RfcProveedor.Crear("ABCD123456XYZ");
+        var rfc = RfcProveedor.Crear("ABCD800101XYZ");
 
         // Act
         var enmascarado = rfc.Enmascarado();
