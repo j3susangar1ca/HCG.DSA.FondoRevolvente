@@ -55,7 +55,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
                     g => g.Key,
                     g => g.Select(f => f.ErrorMessage).ToArray());
 
-            throw new ValidationException(errors);
+            throw new HCG.FondoRevolvente.Application.Common.Exceptions.ValidationException(errors);
         }
 
         return await next();
