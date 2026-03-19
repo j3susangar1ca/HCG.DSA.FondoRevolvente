@@ -7,6 +7,7 @@ namespace HCG.FondoRevolvente.Domain.Exceptions;
 /// </summary>
 public sealed class MontoExcedidoException(decimal montoIntentado, decimal limiteMaximo)
     : DomainException(
+        "MONTO_EXCEDIDO_RN001",
         $"El monto ${montoIntentado:N2} MXN excede el límite máximo del Fondo Revolvente " +
         $"(${limiteMaximo:N2} MXN). Regla de Negocio RN-001.")
 {
