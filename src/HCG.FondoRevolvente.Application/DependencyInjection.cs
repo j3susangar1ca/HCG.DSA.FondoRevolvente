@@ -1,6 +1,8 @@
 using System.Reflection;
 using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using HCG.FondoRevolvente.Application.Common.Behaviors;
 
 namespace HCG.FondoRevolvente.Application;
 
