@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oTkh436QOsDQr3x7QVAmi+6q42hQ1cNWo0tX7eHznl9QkGiXyOYTdl6MjMCzOS/WVe5SiD8q6LeLIyC88zqWqw==",
+  "dgSpecHash": "xkAtpCAyS1xfvlemMjxP6NPxEMt7GR9IQN57427ezvevYH4gqlCvovTMJzLHRFKGqSgwzdJg37dTWw9qxHqrYw==",
   "success": true,
   "projectFilePath": "/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/HCG.FondoRevolvente.Api.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "/home/jesuslangarica/.nuget/packages/azure.identity/1.10.3/azure.identity.1.10.3.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/dapper/2.1.28/dapper.2.1.28.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/fluentvalidation/11.8.1/fluentvalidation.11.8.1.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.8.1/fluentvalidation.dependencyinjectionextensions.11.8.1.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/mediatr/12.2.0/mediatr.12.2.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
@@ -22,9 +23,9 @@
     "/home/jesuslangarica/.nuget/packages/microsoft.codeanalysis.workspaces.common/4.5.0/microsoft.codeanalysis.workspaces.common.4.5.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.data.sqlclient/5.1.5/microsoft.data.sqlclient.5.1.5.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.data.sqlclient.sni.runtime/5.1.1/microsoft.data.sqlclient.sni.runtime.5.1.1.nupkg.sha512",
-    "/home/jesuslangarica/.nuget/packages/microsoft.entityframeworkcore/8.0.0/microsoft.entityframeworkcore.8.0.0.nupkg.sha512",
-    "/home/jesuslangarica/.nuget/packages/microsoft.entityframeworkcore.abstractions/8.0.0/microsoft.entityframeworkcore.abstractions.8.0.0.nupkg.sha512",
-    "/home/jesuslangarica/.nuget/packages/microsoft.entityframeworkcore.analyzers/8.0.0/microsoft.entityframeworkcore.analyzers.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.entityframeworkcore/8.0.2/microsoft.entityframeworkcore.8.0.2.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.entityframeworkcore.abstractions/8.0.2/microsoft.entityframeworkcore.abstractions.8.0.2.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.entityframeworkcore.analyzers/8.0.2/microsoft.entityframeworkcore.analyzers.8.0.2.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.entityframeworkcore.design/8.0.0/microsoft.entityframeworkcore.design.8.0.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.entityframeworkcore.relational/8.0.0/microsoft.entityframeworkcore.relational.8.0.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.entityframeworkcore.sqlserver/8.0.0/microsoft.entityframeworkcore.sqlserver.8.0.0.nupkg.sha512",

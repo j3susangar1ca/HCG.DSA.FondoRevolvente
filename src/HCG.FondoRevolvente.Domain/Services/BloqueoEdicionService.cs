@@ -57,7 +57,7 @@ public class BloqueoEdicionService : IBloqueoEdicionService
 
     private void RenovarLock(string folio, string usuario)
     {
-        var expiracion = DateTime.UtcNow.AddMinutes(LimitesNegocio.BloqueoEdicionTtlMinutos);
+        var expiracion = DateTime.UtcNow.AddMinutes(LimitesNegocio.MinutosDuracionBloqueo);
         _bloqueos[folio] = (usuario, expiracion);
     }
 

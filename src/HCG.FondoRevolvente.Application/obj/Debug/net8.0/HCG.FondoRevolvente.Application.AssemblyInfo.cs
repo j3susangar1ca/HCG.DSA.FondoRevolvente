@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HCG.FondoRevolvente.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9f44c15cc454579aeffebe5da78e188f632c9ae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+acce7f1f5cdec17a45d69153443c3114ef8d7a26")]
 [assembly: System.Reflection.AssemblyProductAttribute("HCG.FondoRevolvente.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HCG.FondoRevolvente.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
