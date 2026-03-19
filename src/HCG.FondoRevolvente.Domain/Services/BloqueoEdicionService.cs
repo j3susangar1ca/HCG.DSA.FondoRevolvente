@@ -11,54 +11,80 @@ namespace HCG.FondoRevolvente.Domain.Services;
 /// </summary>
 public class BloqueoEdicionService : IBloqueoEdicionService
 {
-    private static readonly ConcurrentDictionary<string, (string Usuario, DateTime Expiracion)> _bloqueos = new();
+    private static readonly ConcurrentDictionary<int, BloqueoEntry> _bloqueos = new();
 
-    public bool TryAcquireLock(string folio, string usuario, out string? poseedorActual)
+    private sealed record BloqueoEntry(string Usuario, string NombreCompleto, DateTime Expiracion);
+
+    public Task<bool> AdquirirBloqueoAsync(
+        int solicitudId,
+        string usuario,
+        string nombreCompleto,
+        CancellationToken cancellationToken = default)
     {
         LimpiarBloqueosExpirados();
-        poseedorActual = null;
 
-        if (_bloqueos.TryGetValue(folio, out var bloqueo))
+        if (_bloqueos.TryGetValue(solicitudId, out var bloqueo))
         {
             if (bloqueo.Usuario == usuario)
             {
-                RenovarLock(folio, usuario);
-                return true;
+                // Renovar bloqueo existente
+                var expiracion = DateTime.UtcNow.AddMinutes(LimitesNegocio.MinutosDuracionBloqueo);
+                _bloqueos[solicitudId] = new BloqueoEntry(usuario, nombreCompleto, expiracion);
+                return Task.FromResult(true);
             }
-            poseedorActual = bloqueo.Usuario;
-            return false;
+            return Task.FromResult(false);
         }
 
-        var expiracion = DateTime.UtcNow.AddMinutes(LimitesNegocio.MinutosDuracionBloqueo);
-        return _bloqueos.TryAdd(folio, (usuario, expiracion));
+        var nuevaExpiracion = DateTime.UtcNow.AddMinutes(LimitesNegocio.MinutosDuracionBloqueo);
+        var result = _bloqueos.TryAdd(solicitudId, new BloqueoEntry(usuario, nombreCompleto, nuevaExpiracion));
+        return Task.FromResult(result);
     }
 
-    public void ReleaseLock(string folio, string usuario)
+    public Task LiberarBloqueoAsync(int solicitudId, string usuario, CancellationToken cancellationToken = default)
     {
-        if (_bloqueos.TryGetValue(folio, out var bloqueo) && bloqueo.Usuario == usuario)
+        if (_bloqueos.TryGetValue(solicitudId, out var bloqueo) && bloqueo.Usuario == usuario)
         {
-            _bloqueos.TryRemove(folio, out _);
+            _bloqueos.TryRemove(solicitudId, out _);
         }
+        return Task.CompletedTask;
     }
 
-    public bool IsLockedByOther(string folio, string usuario, out string? poseedorActual)
+    public Task<bool> RenovarBloqueoAsync(int solicitudId, string usuario, CancellationToken cancellationToken = default)
+    {
+        if (_bloqueos.TryGetValue(solicitudId, out var bloqueo) && bloqueo.Usuario == usuario)
+        {
+            var expiracion = DateTime.UtcNow.AddMinutes(LimitesNegocio.MinutosDuracionBloqueo);
+            _bloqueos[solicitudId] = bloqueo with { Expiracion = expiracion };
+            return Task.FromResult(true);
+        }
+        return Task.FromResult(false);
+    }
+
+    public Task<bool> EstaBloqueadaAsync(int solicitudId, CancellationToken cancellationToken = default)
     {
         LimpiarBloqueosExpirados();
-        poseedorActual = null;
-
-        if (_bloqueos.TryGetValue(folio, out var bloqueo) && bloqueo.Usuario != usuario)
-        {
-            poseedorActual = bloqueo.Usuario;
-            return true;
-        }
-
-        return false;
+        return Task.FromResult(_bloqueos.ContainsKey(solicitudId));
     }
 
-    private void RenovarLock(string folio, string usuario)
+    public Task<InfoBloqueo?> ObtenerInfoBloqueoAsync(int solicitudId, CancellationToken cancellationToken = default)
     {
-        var expiracion = DateTime.UtcNow.AddMinutes(LimitesNegocio.MinutosDuracionBloqueo);
-        _bloqueos[folio] = (usuario, expiracion);
+        LimpiarBloqueosExpirados();
+
+        if (_bloqueos.TryGetValue(solicitudId, out var bloqueo))
+        {
+            var ahora = DateTime.UtcNow;
+            var info = new InfoBloqueo
+            {
+                Usuario = bloqueo.Usuario,
+                NombreCompleto = bloqueo.NombreCompleto,
+                FechaAdquisicion = bloqueo.Expiracion.AddMinutes(-LimitesNegocio.MinutosDuracionBloqueo),
+                TiempoRestante = bloqueo.Expiracion - ahora,
+                EstaExpirado = bloqueo.Expiracion < ahora
+            };
+            return Task.FromResult<InfoBloqueo?>(info);
+        }
+
+        return Task.FromResult<InfoBloqueo?>(null);
     }
 
     private void LimpiarBloqueosExpirados()
