@@ -29,7 +29,7 @@ public class BloqueoEdicionService : IBloqueoEdicionService
             return false;
         }
 
-        var expiracion = DateTime.UtcNow.AddMinutes(LimitesNegocio.BloqueoEdicionTtlMinutos);
+        var expiracion = DateTime.UtcNow.AddMinutes(LimitesNegocio.MinutosDuracionBloqueo);
         return _bloqueos.TryAdd(folio, (usuario, expiracion));
     }
 
