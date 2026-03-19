@@ -90,7 +90,7 @@ public class DomainExceptionTests
 
         // Assert
         Assert.Equal("RN004_SAT_NO_DISPONIBLE", ex.CodigoError);
-        Assert.Equal(TimeSpan.FromMinutes(15), ex.TiempoReintentoSugerido); // Basado en LimitesNegocio.MinutosCircuitoAbierto
+        Assert.Equal(TimeSpan.FromMinutes(5), ex.TiempoReintentoSugerido); // Basado en LimitesNegocio.MinutosCircuitoAbierto
     }
 
     [Fact]
