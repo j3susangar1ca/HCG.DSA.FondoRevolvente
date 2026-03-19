@@ -91,12 +91,12 @@ public class SolicitudStateMachine : ISolicitudStateMachine
         };
     }
 
-    public void TransitionTo(Solicitud solicitud, EstadoSolicitud nuevoEstado, string usuario, string? motivo = null)
+    public void TransitionTo(Solicitud solicitud, EstadoSolicitud nuevoEstado, TipoHito hito, string usuario, string? motivo = null)
     {
         if (!CanTransitionTo(solicitud.Estado, nuevoEstado))
             throw new DomainException($"Transición de estado denegada operacionalmente: {solicitud.Estado} -> {nuevoEstado}. " +
                                      $"Consulte la Sección 1.2 de la matriz de transiciones.");
 
-        solicitud.CambiarEstado(nuevoEstado, usuario, motivo);
+        solicitud.CambiarEstado(nuevoEstado, hito, usuario, motivo);
     }
 }

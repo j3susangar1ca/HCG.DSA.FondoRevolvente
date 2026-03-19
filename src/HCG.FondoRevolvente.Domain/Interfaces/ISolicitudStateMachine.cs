@@ -17,5 +17,5 @@ public interface ISolicitudStateMachine
     /// <summary>
     /// Ejecuta la transición de estado en la solicitud, validando precondiciones.
     /// </summary>
-    void TransitionTo(Solicitud solicitud, EstadoSolicitud nuevoEstado, string usuario, string? motivo = null);
+    void TransitionTo(Solicitud solicitud, EstadoSolicitud nuevoEstado, TipoHito hito, string usuario, string? motivo = null);
 }
