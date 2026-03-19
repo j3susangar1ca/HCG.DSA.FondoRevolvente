@@ -17,7 +17,7 @@ public class ApplicationExceptionBase : Exception
     }
 
     public ApplicationExceptionBase(string message, string errorCode, 
-        Exception innerException, IDictionary<string, object>? details = null)
+        Exception? innerException, IDictionary<string, object>? details = null)
         : base(message, innerException)
     {
         ErrorCode = errorCode;
