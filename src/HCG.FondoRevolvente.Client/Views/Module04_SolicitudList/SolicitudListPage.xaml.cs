@@ -1,12 +1,12 @@
-using Microsoft.Maui.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 namespace HCG.FondoRevolvente.Client.Views.Module04_SolicitudList;
 
-public partial class SolicitudListPage : ContentPage
+public sealed partial class SolicitudListPage : Page
 {
-	public SolicitudListPage()
-	{
-		InitializeComponent();
-		BindingContext = new ViewModels.Module04_SolicitudList.SolicitudListViewModel();
-	}
+    public SolicitudListPage()
+    {
+        InitializeComponent();
+        DataContext = new ViewModels.Module04_SolicitudList.SolicitudListViewModel();
+    }
 }
