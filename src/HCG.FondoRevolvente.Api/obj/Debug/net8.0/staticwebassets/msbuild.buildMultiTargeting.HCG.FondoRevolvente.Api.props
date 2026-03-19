@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/HCG.FondoRevolvente.Api.props" />
-</Project>

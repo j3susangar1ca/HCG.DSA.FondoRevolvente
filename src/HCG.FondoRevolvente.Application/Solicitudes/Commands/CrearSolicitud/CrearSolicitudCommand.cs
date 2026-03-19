@@ -7,4 +7,5 @@ public record CrearSolicitudCommand : IRequest<Result<int>>
 {
     public decimal Monto { get; init; }
     public string Descripcion { get; init; } = null!;
+    public int? ProveedorId { get; init; }
 }

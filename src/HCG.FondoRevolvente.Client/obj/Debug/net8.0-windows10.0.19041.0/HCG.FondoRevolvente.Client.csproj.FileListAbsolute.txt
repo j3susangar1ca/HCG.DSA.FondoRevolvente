@@ -1,2 +1,0 @@
-/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Client/obj/Debug/net8.0-windows10.0.19041.0/HCG.FondoRevolvente.Client.csproj.AssemblyReference.cache
-/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Client/obj/Debug/net8.0-windows10.0.19041.0/HCG.FondoRevolvente.Client.GeneratedMSBuildEditorConfig.editorconfig
