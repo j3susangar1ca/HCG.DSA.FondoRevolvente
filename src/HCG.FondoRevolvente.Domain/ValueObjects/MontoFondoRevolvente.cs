@@ -77,9 +77,9 @@ public sealed record MontoFondoRevolvente
     /// </summary>
     public NivelAlertaMonto NivelAlerta => PorcentajeDelLimite switch
     {
-        < 0.70 => NivelAlertaMonto.Verde,
-        < 0.90 => NivelAlertaMonto.Amarillo,
-        _      => NivelAlertaMonto.Rojo
+        < LimitesNegocio.UmbralAlertaAmarillaMonto => NivelAlertaMonto.Verde,
+        < LimitesNegocio.UmbralAlertaRojaMonto    => NivelAlertaMonto.Amarillo,
+        _                                        => NivelAlertaMonto.Rojo
     };
 
     /// <summary>Indica si este monto es el resultado de un cálculo con IVA incluido.</summary>
