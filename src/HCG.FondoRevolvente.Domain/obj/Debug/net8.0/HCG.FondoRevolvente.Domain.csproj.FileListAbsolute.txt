@@ -10,3 +10,4 @@
 /home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Domain/obj/Debug/net8.0/refint/HCG.FondoRevolvente.Domain.dll
 /home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Domain/obj/Debug/net8.0/HCG.FondoRevolvente.Domain.pdb
 /home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Domain/obj/Debug/net8.0/ref/HCG.FondoRevolvente.Domain.dll
+/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Domain/obj/Debug/net8.0/HCG.FondoRevolvente.Domain.csproj.AssemblyReference.cache

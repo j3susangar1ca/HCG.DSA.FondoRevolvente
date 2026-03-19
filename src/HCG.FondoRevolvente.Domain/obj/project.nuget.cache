@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dTmzYAurTWT3nNVSSCYiSNRb3hVk/K5LTs9KWRhCnBGrHqzeMYWuB+TRUL2aZR/F+/4pk9zPQQ3uo0bVi4eltA==",
+  "dgSpecHash": "UP13uMCApLJvCTqYO9uSkK8uHT8BS2/n199Sj1MtX4NjoFySOKUFABzK9keuf3jSfvpOBWXYDkgZ2GqqryyWAA==",
   "success": true,
   "projectFilePath": "/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Domain/HCG.FondoRevolvente.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
