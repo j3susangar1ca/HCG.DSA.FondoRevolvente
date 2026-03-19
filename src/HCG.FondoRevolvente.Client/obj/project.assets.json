@@ -493,21 +493,6 @@
           "build/Microsoft.Windows.CsWinRT.targets": {}
         }
       },
-      "Microsoft.Windows.SDK.NET.Ref/10.0.22621.29": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/Microsoft.Windows.SDK.NET.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0/WinRT.Runtime.dll": {}
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.Windows.SDK.NET.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0/WinRT.Runtime.dll": {}
-        }
-      },
       "System.Diagnostics.DiagnosticSource/8.0.0": {
         "type": "package",
         "compile": {
@@ -1548,103 +1533,6 @@
         "readme.txt"
       ]
     },
-    "Microsoft.Windows.SDK.NET.Ref/10.0.22621.29": {
-      "sha512": "Ond+tz+m6Xq8ZVOnd548WLrxAR0waNeZzQmAk85TOfBPurGlivSXCtQaPfnDwwtOjYIyL+a79TK7l+akzIJMIA==",
-      "type": "package",
-      "path": "microsoft.windows.sdk.net.ref/10.0.22621.29",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "data/FrameworkList.xml",
-        "data/RuntimeList.xml",
-        "lib/net6.0/Microsoft.Windows.SDK.NET.dll",
-        "lib/net6.0/Microsoft.Windows.SDK.NET.xml",
-        "lib/net6.0/WinRT.Runtime.dll",
-        "microsoft.windows.sdk.net.ref.10.0.22621.29.nupkg.sha512",
-        "microsoft.windows.sdk.net.ref.nuspec",
-        "winmd/Windows.AI.MachineLearning.MachineLearningContract.winmd",
-        "winmd/Windows.AI.MachineLearning.Preview.MachineLearningPreviewContract.winmd",
-        "winmd/Windows.ApplicationModel.Activation.ActivatedEventsContract.winmd",
-        "winmd/Windows.ApplicationModel.Activation.ActivationCameraSettingsContract.winmd",
-        "winmd/Windows.ApplicationModel.Activation.ContactActivatedEventsContract.winmd",
-        "winmd/Windows.ApplicationModel.Activation.WebUISearchActivatedEventsContract.winmd",
-        "winmd/Windows.ApplicationModel.Background.BackgroundAlarmApplicationContract.winmd",
-        "winmd/Windows.ApplicationModel.Calls.Background.CallsBackgroundContract.winmd",
-        "winmd/Windows.ApplicationModel.Calls.CallsPhoneContract.winmd",
-        "winmd/Windows.ApplicationModel.Calls.CallsVoipContract.winmd",
-        "winmd/Windows.ApplicationModel.Calls.LockScreenCallContract.winmd",
-        "winmd/Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract.winmd",
-        "winmd/Windows.ApplicationModel.FullTrustAppContract.winmd",
-        "winmd/Windows.ApplicationModel.Preview.InkWorkspace.PreviewInkWorkspaceContract.winmd",
-        "winmd/Windows.ApplicationModel.Preview.Notes.PreviewNotesContract.winmd",
-        "winmd/Windows.ApplicationModel.Resources.Management.ResourceIndexerContract.winmd",
-        "winmd/Windows.ApplicationModel.Search.Core.SearchCoreContract.winmd",
-        "winmd/Windows.ApplicationModel.Search.SearchContract.winmd",
-        "winmd/Windows.ApplicationModel.SocialInfo.SocialInfoContract.winmd",
-        "winmd/Windows.ApplicationModel.StartupTaskContract.winmd",
-        "winmd/Windows.ApplicationModel.Wallet.WalletContract.winmd",
-        "winmd/Windows.Devices.Custom.CustomDeviceContract.winmd",
-        "winmd/Windows.Devices.DevicesLowLevelContract.winmd",
-        "winmd/Windows.Devices.Portable.PortableDeviceContract.winmd",
-        "winmd/Windows.Devices.Printers.Extensions.ExtensionsContract.winmd",
-        "winmd/Windows.Devices.Printers.PrintersContract.winmd",
-        "winmd/Windows.Devices.Scanners.ScannerDeviceContract.winmd",
-        "winmd/Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract.winmd",
-        "winmd/Windows.Devices.SmartCards.SmartCardEmulatorContract.winmd",
-        "winmd/Windows.Devices.Sms.LegacySmsApiContract.winmd",
-        "winmd/Windows.Foundation.FoundationContract.winmd",
-        "winmd/Windows.Foundation.UniversalApiContract.winmd",
-        "winmd/Windows.Gaming.Input.GamingInputPreviewContract.winmd",
-        "winmd/Windows.Gaming.Preview.GamesEnumerationContract.winmd",
-        "winmd/Windows.Gaming.UI.GameChatOverlayContract.winmd",
-        "winmd/Windows.Gaming.UI.GamingUIProviderContract.winmd",
-        "winmd/Windows.Gaming.XboxLive.StorageApiContract.winmd",
-        "winmd/Windows.Globalization.GlobalizationJapanesePhoneticAnalyzerContract.winmd",
-        "winmd/Windows.Graphics.Printing3D.Printing3DContract.winmd",
-        "winmd/Windows.Management.Deployment.Preview.DeploymentPreviewContract.winmd",
-        "winmd/Windows.Management.Deployment.SharedPackageContainerContract.winmd",
-        "winmd/Windows.Management.Update.WindowsUpdateContract.winmd",
-        "winmd/Windows.Management.Workplace.WorkplaceSettingsContract.winmd",
-        "winmd/Windows.Media.AppBroadcasting.AppBroadcastingContract.winmd",
-        "winmd/Windows.Media.AppRecording.AppRecordingContract.winmd",
-        "winmd/Windows.Media.Capture.AppBroadcastContract.winmd",
-        "winmd/Windows.Media.Capture.AppCaptureContract.winmd",
-        "winmd/Windows.Media.Capture.AppCaptureMetadataContract.winmd",
-        "winmd/Windows.Media.Capture.CameraCaptureUIContract.winmd",
-        "winmd/Windows.Media.Capture.GameBarContract.winmd",
-        "winmd/Windows.Media.Devices.CallControlContract.winmd",
-        "winmd/Windows.Media.MediaControlContract.winmd",
-        "winmd/Windows.Media.Playlists.PlaylistsContract.winmd",
-        "winmd/Windows.Media.Protection.ProtectionRenewalContract.winmd",
-        "winmd/Windows.Networking.Connectivity.WwanContract.winmd",
-        "winmd/Windows.Networking.NetworkOperators.LegacyNetworkOperatorsContract.winmd",
-        "winmd/Windows.Networking.Sockets.ControlChannelTriggerContract.winmd",
-        "winmd/Windows.Networking.XboxLive.XboxLiveSecureSocketsContract.winmd",
-        "winmd/Windows.Perception.Automation.Core.PerceptionAutomationCoreContract.winmd",
-        "winmd/Windows.Security.EnterpriseData.EnterpriseDataContract.winmd",
-        "winmd/Windows.Security.ExchangeActiveSyncProvisioning.EasContract.winmd",
-        "winmd/Windows.Security.Isolation.IsolatedWindowsEnvironmentContract.winmd",
-        "winmd/Windows.Services.Maps.GuidanceContract.winmd",
-        "winmd/Windows.Services.Maps.LocalSearchContract.winmd",
-        "winmd/Windows.Services.Store.StoreContract.winmd",
-        "winmd/Windows.Services.TargetedContent.TargetedContentContract.winmd",
-        "winmd/Windows.Storage.Provider.CloudFilesContract.winmd",
-        "winmd/Windows.System.Profile.ProfileHardwareTokenContract.winmd",
-        "winmd/Windows.System.Profile.ProfileRetailInfoContract.winmd",
-        "winmd/Windows.System.Profile.ProfileSharedModeContract.winmd",
-        "winmd/Windows.System.Profile.SystemManufacturers.SystemManufacturersContract.winmd",
-        "winmd/Windows.System.SystemManagementContract.winmd",
-        "winmd/Windows.System.UserProfile.UserProfileContract.winmd",
-        "winmd/Windows.System.UserProfile.UserProfileLockScreenContract.winmd",
-        "winmd/Windows.UI.ApplicationSettings.ApplicationsSettingsContract.winmd",
-        "winmd/Windows.UI.Core.AnimationMetrics.AnimationMetricsContract.winmd",
-        "winmd/Windows.UI.Core.CoreWindowDialogsContract.winmd",
-        "winmd/Windows.UI.Shell.SecurityAppManagerContract.winmd",
-        "winmd/Windows.UI.UIAutomation.UIAutomationContract.winmd",
-        "winmd/Windows.UI.ViewManagement.ViewManagementViewScalingContract.winmd",
-        "winmd/Windows.Web.Http.Diagnostics.HttpDiagnosticsContract.winmd"
-      ]
-    },
     "System.Diagnostics.DiagnosticSource/8.0.0": {
       "sha512": "c9xLpVz6PL9lp/djOWtk5KPDZq3cSYpmXoJQY524EOtuFl5z9ZtsotpsyrDW40U1DRnQSYvcPKEUV0X//u6gkQ==",
       "type": "package",
@@ -1752,8 +1640,7 @@
       "HCG.FondoRevolvente.Application >= 1.0.0",
       "Microsoft.AspNetCore.SignalR.Client >= 8.0.0",
       "Microsoft.Extensions.Http >= 8.0.0",
-      "Microsoft.Windows.CsWinRT >= 2.0.4",
-      "Microsoft.Windows.SDK.NET.Ref >= 10.0.22621.29"
+      "Microsoft.Windows.CsWinRT >= 2.0.4"
     ]
   },
   "packageFolders": {
@@ -1812,10 +1699,6 @@
           "Microsoft.Windows.CsWinRT": {
             "target": "Package",
             "version": "[2.0.4, )"
-          },
-          "Microsoft.Windows.SDK.NET.Ref": {
-            "target": "Package",
-            "version": "[10.0.22621.29, )"
           }
         },
         "imports": [
@@ -1850,16 +1733,5 @@
         "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.124/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1213",
-      "level": "Error",
-      "message": "The package Microsoft.Windows.SDK.NET.Ref 10.0.22621.29 has a package type DotnetPlatform that is incompatible with this project. ",
-      "libraryId": "Microsoft.Windows.SDK.NET.Ref",
-      "targetGraphs": [
-        "net8.0-windows10.0.19041"
-      ]
-    }
-  ]
+  }
 }

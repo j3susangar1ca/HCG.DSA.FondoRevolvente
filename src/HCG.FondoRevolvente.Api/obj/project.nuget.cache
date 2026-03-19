@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "KYefhLtyjDdiNOtV9CyWsiitrAz9Jesv46yl9llLyHCoZHNAuBHRN5vNBmYyl7DzvnZm/TwNjZXUjbgurqdiSg==",
-  "success": false,
+  "dgSpecHash": "c0A0KpLHW+85FD/g3sleviOflwmfsRhwkDwmnt6R78MYtnCfZPrPwzh1lJfh0EsLEwajbIW++d2K12NA8Ymsbw==",
+  "success": true,
   "projectFilePath": "/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/HCG.FondoRevolvente.Api.csproj",
   "expectedPackageFiles": [
     "/home/jesuslangarica/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
@@ -97,15 +97,5 @@
     "/home/jesuslangarica/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1102",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.AspNetCore.SignalR with version (>= 8.0.0)\n  - Found 18 version(s) in nuget.org [ Nearest version: 1.2.9 ]",
-      "libraryId": "Microsoft.AspNetCore.SignalR",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

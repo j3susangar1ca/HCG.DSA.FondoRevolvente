@@ -1,0 +1,8 @@
+/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/HCG.FondoRevolvente.Api.csproj.AssemblyReference.cache
+/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/HCG.FondoRevolvente.Api.GeneratedMSBuildEditorConfig.editorconfig
+/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/HCG.FondoRevolvente.Api.AssemblyInfoInputs.cache
+/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/HCG.FondoRevolvente.Api.AssemblyInfo.cs
+/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/HCG.FondoRevolvente.Api.csproj.CoreCompileInputs.cache
+/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/HCG.FondoRevolvente.Api.MvcApplicationPartsAssemblyInfo.cs
+/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/HCG.FondoRevolvente.Api.MvcApplicationPartsAssemblyInfo.cache
+/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/HCG.FondoRevolvente.Api.sourcelink.json

@@ -128,10 +128,6 @@
             "Microsoft.Windows.CsWinRT": {
               "target": "Package",
               "version": "[2.0.4, )"
-            },
-            "Microsoft.Windows.SDK.NET.Ref": {
-              "target": "Package",
-              "version": "[10.0.22621.29, )"
             }
           },
           "imports": [

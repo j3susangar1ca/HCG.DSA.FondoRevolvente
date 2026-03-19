@@ -4876,7 +4876,6 @@
       "HCG.FondoRevolvente.Infrastructure >= 1.0.0",
       "HCG.FondoRevolvente.Persistence >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 8.0.0",
-      "Microsoft.AspNetCore.SignalR >= 8.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -4931,10 +4930,6 @@
             "target": "Package",
             "version": "[8.0.0, )"
           },
-          "Microsoft.AspNetCore.SignalR": {
-            "target": "Package",
-            "version": "[8.0.0, )"
-          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.4.0, )"
@@ -4962,16 +4957,5 @@
         "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.124/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1102",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.AspNetCore.SignalR with version (>= 8.0.0)\n  - Found 18 version(s) in nuget.org [ Nearest version: 1.2.9 ]",
-      "libraryId": "Microsoft.AspNetCore.SignalR",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }

@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "UkNQnWxaxlQTNoFoJ2CmgkA521Dt9Op7Nrt14A2PmsZjxVJzfvzAuyZlaTa/bwoQvEsS/K2N3IfiFWs1a0Io+Q==",
-  "success": false,
+  "dgSpecHash": "yIZ+Z9nb527nUe0J0mZQ8on6a9gCcU3S7FVsvVpHTbhMVX4CHl0sT4rYJ9thyXyMcgmEM/tT3roC0lqRQ91tOg==",
+  "success": true,
   "projectFilePath": "/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Client/HCG.FondoRevolvente.Client.csproj",
   "expectedPackageFiles": [
     "/home/jesuslangarica/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
@@ -32,22 +32,11 @@
     "/home/jesuslangarica/.nuget/packages/microsoft.extensions.options.configurationextensions/8.0.0/microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.windows.cswinrt/2.0.4/microsoft.windows.cswinrt.2.0.4.nupkg.sha512",
-    "/home/jesuslangarica/.nuget/packages/microsoft.windows.sdk.net.ref/10.0.22621.29/microsoft.windows.sdk.net.ref.10.0.22621.29.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/system.diagnostics.diagnosticsource/8.0.0/system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/system.threading.channels/8.0.0/system.threading.channels.8.0.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.windowsdesktop.app.ref/8.0.24/microsoft.windowsdesktop.app.ref.8.0.24.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.windows.sdk.net.ref/10.0.19041.56/microsoft.windows.sdk.net.ref.10.0.19041.56.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1213",
-      "level": "Error",
-      "message": "The package Microsoft.Windows.SDK.NET.Ref 10.0.22621.29 has a package type DotnetPlatform that is incompatible with this project. ",
-      "libraryId": "Microsoft.Windows.SDK.NET.Ref",
-      "targetGraphs": [
-        "net8.0-windows10.0.19041"
-      ]
-    }
-  ]
+  "logs": []
 }
