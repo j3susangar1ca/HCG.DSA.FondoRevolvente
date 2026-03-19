@@ -5,6 +5,7 @@ namespace HCG.FondoRevolvente.Domain.Exceptions;
 /// </summary>
 public sealed class FraccionamientoDetectadoException(string codigoProducto, string folioExistente)
     : DomainException(
+        "FRACCIONAMIENTO_DETECTADO_RN002",
         $"Posible fraccionamiento detectado (RN-002): el código '{codigoProducto}' " +
         $"fue adquirido en la solicitud {folioExistente} del mismo ejercicio fiscal.")
 {
