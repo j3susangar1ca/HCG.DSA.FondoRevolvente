@@ -65,34 +65,59 @@ public class Solicitud
     /// <summary>
     /// Agrega una cotización a la solicitud.
     /// </summary>
-    public void AgregarCotizacion(int proveedorId, MontoFondoRevolvente monto, string archivoUri, string usuario)
+    public void AgregarCotizacion(
+        int proveedorId, 
+        string numeroCotizacion,
+        MontoFondoRevolvente montoSubtotal, 
+        decimal tasaIva,
+        DateTime fechaEmision,
+        DateTime fechaVigencia,
+        string? usuario = null)
     {
         if (Estado != EstadoSolicitud.SinCotizaciones && Estado != EstadoSolicitud.EnCotizacion)
             throw new DomainException($"No se pueden agregar cotizaciones en el estado actual: {Estado}");
 
-        var cotizacion = new Cotizacion(proveedorId, Id, monto, archivoUri);
+        var cotizacion = new Cotizacion(
+            Id, 
+            proveedorId, 
+            numeroCotizacion, 
+            montoSubtotal, 
+            tasaIva, 
+            fechaEmision, 
+            fechaVigencia, 
+            usuario);
+            
         _cotizaciones.Add(cotizacion);
 
         Fase = FaseProceso.EstudioMercadoCotizacion;
-        RegistrarHito(TipoHito.RecepcionCotizacionProveedor, $"Cotización agregada por {monto}", usuario, archivoUri);
+        RegistrarHito(TipoHito.RecepcionCotizacionProveedor, $"Cotización {numeroCotizacion} agregada por {cotizacion.MontoTotal}", usuario);
     }
 
     /// <summary>
     /// Selecciona el proveedor ganador basándose en una cotización.
     /// Aplica RN-003: mínimo de cotizaciones requeridas.
     /// </summary>
-    public void SeleccionarProveedor(int cotizacionId, string usuario)
+    public void SeleccionarProveedor(int cotizacionId, string usuario, string? razon = null)
     {
         if (_cotizaciones.Count < LimitesNegocio.CotizacionesMinimasRequeridas)
             throw new CotizacionesInsuficientesException(_cotizaciones.Count, LimitesNegocio.CotizacionesMinimasRequeridas);
 
+        var cotizacionEncontrada = false;
         foreach (var cot in _cotizaciones)
         {
             if (cot.Id == cotizacionId)
-                cot.MarcarComoGanadora();
+            {
+                cot.SeleccionarComoGanadora(razon);
+                cotizacionEncontrada = true;
+            }
             else
-                cot.DesmarcarComoGanadora();
+            {
+                cot.Deseleccionar();
+            }
         }
+
+        if (!cotizacionEncontrada)
+            throw new DomainException($"No se encontró la cotización con ID {cotizacionId}.");
 
         RegistrarHito(TipoHito.SeleccionProveedor, "Proveedor ganador seleccionado", usuario);
     }
@@ -110,8 +135,8 @@ public class Solicitud
         RegistrarHito(hito, mensaje, usuario);
     }
 
-    private void RegistrarHito(TipoHito tipo, string mensaje, string usuario, string? adjunto = null)
+    private void RegistrarHito(TipoHito tipo, string comentario, string? usuario, string? nombreCompleto = null, RolAplicacion? rol = null)
     {
-        _historial.Add(new Hito(Id, tipo, mensaje, usuario, adjunto));
+        _historial.Add(new Hito(Id, tipo, Estado, usuario, nombreCompleto, rol, comentario));
     }
 }

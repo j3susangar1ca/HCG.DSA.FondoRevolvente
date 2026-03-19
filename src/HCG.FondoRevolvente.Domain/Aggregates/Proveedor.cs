@@ -217,7 +217,7 @@ public class Proveedor
     /// <summary>
     /// Obtiene el número de cotizaciones ganadas por este proveedor.
     /// </summary>
-    public int CotizacionesGanadas => _cotizaciones.Count(c => c.EsGanadora);
+    public int CotizacionesGanadas => _cotizaciones.Count(c => c.Seleccionada);
 
     #endregion
 
