@@ -1,13 +1,39 @@
 namespace HCG.FondoRevolvente.Domain.Interfaces;
 
 /// <summary>
-/// Contrato genérico para persistencia de agregados.
+/// Interfaz genérica para repositorios del dominio.
 /// </summary>
-public interface IRepository<T> where T : class
+/// <typeparam name="T">Tipo de la entidad.</typeparam>
+/// <typeparam name="TId">Tipo del identificador.</typeparam>
+public interface IRepository<T, TId> where T : class
 {
-    Task<T?> GetByIdAsync(int id, CancellationToken ct = default);
-    Task<IReadOnlyList<T>> ListAllAsync(CancellationToken ct = default);
-    Task<T> AddAsync(T entity, CancellationToken ct = default);
-    Task UpdateAsync(T entity, CancellationToken ct = default);
-    Task DeleteAsync(T entity, CancellationToken ct = default);
+    /// <summary>
+    /// Obtiene una entidad por su identificador.
+    /// </summary>
+    Task<T?> GetByIdAsync(TId id, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Obtiene todas las entidades.
+    /// </summary>
+    Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Agrega una nueva entidad.
+    /// </summary>
+    Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Actualiza una entidad existente.
+    /// </summary>
+    Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Elimina una entidad.
+    /// </summary>
+    Task DeleteAsync(T entity, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Verifica si existe una entidad con el identificador especificado.
+    /// </summary>
+    Task<bool> ExistsAsync(TId id, CancellationToken cancellationToken = default);
 }
