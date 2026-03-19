@@ -1,8 +1,4 @@
 namespace HCG.FondoRevolvente.Domain.Exceptions;
 
-public class DomainException : Exception
-{
-    public DomainException(string message) : base(message)
-    {
-    }
-}
+/// <summary>Excepción base para todas las violaciones de invariantes del dominio.</summary>
+public class DomainException(string message) : Exception(message);
