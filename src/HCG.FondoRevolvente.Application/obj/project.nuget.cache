@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "dgSpecHash": "LMjQd5bKwpulaupFPY2v40CR0ZNX67nan8GJxv3SqW7kDS7n5jnfZqrA/Z+Fn3p6hmbUw43iCyt6OoAERC/2Fg==",
+  "success": true,
+  "projectFilePath": "/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Application/HCG.FondoRevolvente.Application.csproj",
+  "expectedPackageFiles": [
+    "/home/jesuslangarica/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/fluentvalidation/11.8.1/fluentvalidation.11.8.1.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/mediatr/12.2.0/mediatr.12.2.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'AutoMapper' 12.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
+      "libraryId": "AutoMapper",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}

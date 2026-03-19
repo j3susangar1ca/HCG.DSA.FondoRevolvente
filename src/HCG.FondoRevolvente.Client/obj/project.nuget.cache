@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "dgSpecHash": "UkNQnWxaxlQTNoFoJ2CmgkA521Dt9Op7Nrt14A2PmsZjxVJzfvzAuyZlaTa/bwoQvEsS/K2N3IfiFWs1a0Io+Q==",
+  "success": false,
+  "projectFilePath": "/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Client/HCG.FondoRevolvente.Client.csproj",
+  "expectedPackageFiles": [
+    "/home/jesuslangarica/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/communitytoolkit.mvvm/8.2.2/communitytoolkit.mvvm.8.2.2.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/fluentvalidation/11.8.1/fluentvalidation.11.8.1.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/mediatr/12.2.0/mediatr.12.2.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.aspnetcore.connections.abstractions/8.0.0/microsoft.aspnetcore.connections.abstractions.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.aspnetcore.http.connections.client/8.0.0/microsoft.aspnetcore.http.connections.client.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.aspnetcore.http.connections.common/8.0.0/microsoft.aspnetcore.http.connections.common.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.aspnetcore.signalr.client/8.0.0/microsoft.aspnetcore.signalr.client.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.aspnetcore.signalr.client.core/8.0.0/microsoft.aspnetcore.signalr.client.core.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.aspnetcore.signalr.common/8.0.0/microsoft.aspnetcore.signalr.common.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.aspnetcore.signalr.protocols.json/8.0.0/microsoft.aspnetcore.signalr.protocols.json.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.configuration/8.0.0/microsoft.extensions.configuration.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.configuration.binder/8.0.0/microsoft.extensions.configuration.binder.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.diagnostics/8.0.0/microsoft.extensions.diagnostics.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.diagnostics.abstractions/8.0.0/microsoft.extensions.diagnostics.abstractions.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.features/8.0.0/microsoft.extensions.features.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.http/8.0.0/microsoft.extensions.http.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.logging/8.0.0/microsoft.extensions.logging.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.options.configurationextensions/8.0.0/microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.windows.cswinrt/2.0.4/microsoft.windows.cswinrt.2.0.4.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.windows.sdk.net.ref/10.0.22621.29/microsoft.windows.sdk.net.ref.10.0.22621.29.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/system.diagnostics.diagnosticsource/8.0.0/system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/system.threading.channels/8.0.0/system.threading.channels.8.0.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.windowsdesktop.app.ref/8.0.24/microsoft.windowsdesktop.app.ref.8.0.24.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.windows.sdk.net.ref/10.0.19041.56/microsoft.windows.sdk.net.ref.10.0.19041.56.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1213",
+      "level": "Error",
+      "message": "The package Microsoft.Windows.SDK.NET.Ref 10.0.22621.29 has a package type DotnetPlatform that is incompatible with this project. ",
+      "libraryId": "Microsoft.Windows.SDK.NET.Ref",
+      "targetGraphs": [
+        "net8.0-windows10.0.19041"
+      ]
+    }
+  ]
+}
