@@ -1,10 +1,46 @@
-using HCG.FondoRevolvente.Domain.Enums;
-using HCG.FondoRevolvente.Domain.ValueObjects;
-
 namespace HCG.FondoRevolvente.Domain.Events;
 
-public record SolicitudCreadaEvent(int SolicitudId, FolioDSA Folio, string Solicitante);
+/// <summary>
+/// Interfaz base para todos los eventos de dominio.
+/// Los eventos de dominio son emitidos por los agregados para notificar
+/// cambios significativos que pueden interesar a otros componentes del sistema.
+/// </summary>
+public interface IDomainEvent
+{
+    /// <summary>
+    /// Fecha y hora en que ocurrió el evento.
+    /// </summary>
+    DateTime OcurridoEn { get; }
+}
 
-public record EstadoCambiadoEvent(int SolicitudId, EstadoSolicitud NuevoEstado, string Usuario);
+/// <summary>
+/// Clase base para eventos de dominio con timestamp automático.
+/// </summary>
+public abstract record DomainEventBase : IDomainEvent
+{
+    public DateTime OcurridoEn { get; } = DateTime.UtcNow;
+}
 
-public record HitoRegistradoEvent(int SolicitudId, TipoHito Tipo, string Usuario);
+// ───────────────────────────────────────────────────────
+// Eventos del ciclo de vida de Solicitud
+// ───────────────────────────────────────────────────────
+
+public record SolicitudCreadaEvent(int SolicitudId, string Folio, string? Usuario) : DomainEventBase;
+
+public record SolicitudEnviadaCotizacionEvent(int SolicitudId, string Folio, string? Usuario) : DomainEventBase;
+
+public record ProveedorSeleccionadoEvent(int SolicitudId, string Folio, int ProveedorId, int CotizacionId) : DomainEventBase;
+
+public record SolicitudAutorizadaCaaEvent(int SolicitudId, string Folio, string? Usuario) : DomainEventBase;
+
+public record SolicitudRechazadaCaaEvent(int SolicitudId, string Folio, string Motivo, string? Usuario) : DomainEventBase;
+
+public record CfdiValidadoEvent(int SolicitudId, string Folio, string UuidCfdi) : DomainEventBase;
+
+public record PagoRealizadoEvent(int SolicitudId, string Folio, decimal Monto) : DomainEventBase;
+
+public record EntregaConfirmadaEvent(int SolicitudId, string Folio) : DomainEventBase;
+
+public record SolicitudCerradaEvent(int SolicitudId, string Folio) : DomainEventBase;
+
+public record SolicitudCanceladaEvent(int SolicitudId, string Folio, string Motivo, string? Usuario) : DomainEventBase;
