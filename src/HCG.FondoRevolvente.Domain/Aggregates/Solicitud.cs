@@ -83,8 +83,8 @@ public class Solicitud
     /// </summary>
     public void SeleccionarProveedor(int cotizacionId, string usuario)
     {
-        if (_cotizaciones.Count < LimitesNegocio.CotizacionesMinimas)
-            throw new CotizacionesInsuficientesException(_cotizaciones.Count, LimitesNegocio.CotizacionesMinimas);
+        if (_cotizaciones.Count < LimitesNegocio.CotizacionesMinimasRequeridas)
+            throw new CotizacionesInsuficientesException(_cotizaciones.Count, LimitesNegocio.CotizacionesMinimasRequeridas);
 
         foreach (var cot in _cotizaciones)
         {
