@@ -12,9 +12,9 @@ namespace HCG.FondoRevolvente.Domain.Services;
 /// </summary>
 public class ValidadorFraccionamientoService
 {
-    private readonly IRepository<Solicitud> _solicitudRepository;
+    private readonly IRepository<Solicitud, int> _solicitudRepository;
 
-    public ValidadorFraccionamientoService(IRepository<Solicitud> solicitudRepository)
+    public ValidadorFraccionamientoService(IRepository<Solicitud, int> solicitudRepository)
     {
         _solicitudRepository = solicitudRepository;
     }
@@ -27,7 +27,7 @@ public class ValidadorFraccionamientoService
     /// <exception cref="FraccionamientoDetectadoException">Si se detecta compra previa en el mismo ejercicio.</exception>
     public async Task ValidarAsync(Solicitud solicitud, string codigoProducto, CancellationToken ct = default)
     {
-        var todas = await _solicitudRepository.ListAllAsync(ct);
+        var todas = await _solicitudRepository.GetAllAsync(ct);
 
         var previa = todas.FirstOrDefault(s =>
             s.Id != solicitud.Id &&
