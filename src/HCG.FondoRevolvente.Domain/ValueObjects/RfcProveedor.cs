@@ -4,193 +4,218 @@ using HCG.FondoRevolvente.Domain.Exceptions;
 namespace HCG.FondoRevolvente.Domain.ValueObjects;
 
 /// <summary>
-/// Encapsula el RFC de un proveedor con validación estructural del formato SAT.
-/// 
-/// Personas morales:  AAA######XX   → 12 caracteres (3 letras + 6 dígitos + 3 alfanumérico)
-/// Personas físicas:  AAAA######XXX → 13 caracteres (4 letras + 6 dígitos + 3 alfanumérico)
-/// 
-/// Almacenado cifrado en BD (§RfcEncryptionService).
-/// Presentado parcialmente enmascarado según rol: AAAA######*** (§3.2 README).
+/// Encapsula el Registro Federal de Contribuyentes (RFC) de un proveedor.
+/// Valida el formato según las reglas del SAT México.
+/// Soporta tanto Personas Físicas (13 caracteres) como Personas Morales (12 caracteres).
 /// </summary>
 public sealed record RfcProveedor
 {
-    // SAT estructura: letras iniciales + fecha YYMMDD + homoclave
-    // Moral:   ^[A-ZÑ&]{3}\d{6}[A-Z\d]{3}$
-    // Física:  ^[A-ZÑ&]{4}\d{6}[A-Z\d]{3}$
-    private static readonly Regex _moral =
-        new(@"^[A-ZÑ&]{3}\d{6}[A-Z\d]{3}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+    // Regex compiladas para validación de RFC según especificaciones del SAT
+    // Persona Moral: 12 caracteres - AAA######XXX
+    private static readonly Regex _formatoPersonaMoral =
+        new(@"^([A-ZÑ&]{3})((\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01]))([A-Z0-9]{3})$",
+            RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
-    private static readonly Regex _fisica =
-        new(@"^[A-ZÑ&]{4}\d{6}[A-Z\d]{3}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+    // Persona Física: 13 caracteres - AAAA######XXX
+    private static readonly Regex _formatoPersonaFisica =
+        new(@"^([A-ZÑ&]{4})((\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01]))([A-Z0-9]{3})$",
+            RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
-    // RFCs genéricos del SAT usados para operaciones especiales — siempre válidos
-    private static readonly IReadOnlySet<string> _rfcsGenericos = new HashSet<string>(
-        StringComparer.OrdinalIgnoreCase)
+    // RFC genéricos que no son válidos para facturación real
+    private static readonly HashSet<string> _rfcGenericos = new(StringComparer.OrdinalIgnoreCase)
     {
-        "XAXX010101000", // Público en general
-        "XEXX010101000"  // Extranjero
+        "XAXX010101000", // RFC genérico para extranjeros
+        "XEXX010101000"  // RFC genérico para extranjeros sin RFC
     };
 
-    /// <summary>RFC completo, normalizado a mayúsculas. Almacenado cifrado.</summary>
+    /// <summary>
+    /// Valor del RFC en mayúsculas.
+    /// </summary>
     public string Valor { get; }
 
-    /// <summary>Tipo de persona según la longitud del RFC.</summary>
-    public TipoPersonaRfc TipoPersona { get; }
+    /// <summary>
+    /// Indica si el RFC pertenece a una persona física (13 caracteres).
+    /// </summary>
+    public bool EsPersonaFisica => Valor.Length == 13;
+
+    /// <summary>
+    /// Indica si el RFC pertenece a una persona moral (12 caracteres).
+    /// </summary>
+    public bool EsPersonaMoral => Valor.Length == 12;
+
+    /// <summary>
+    /// Razón social o nombre del contribuyente (primeros caracteres del RFC).
+    /// </summary>
+    public string Siglas => EsPersonaFisica ? Valor[..4] : Valor[..3];
+
+    /// <summary>
+    /// Fecha de constitución o nacimiento extraída del RFC (puede no ser exacta).
+    /// </summary>
+    public DateOnly? FechaDeclarada
+    {
+        get
+        {
+            var fechaStr = EsPersonaFisica ? Valor.Substring(4, 6) : Valor.Substring(3, 6);
+            if (fechaStr == "000000") return null;
+
+            // El año en el RFC usa 2 dígitos, asumimos el siglo más probable
+            var anio = int.Parse(fechaStr[..2]);
+            anio += anio <= 30 ? 2000 : 1900; // Ajuste de siglo
+
+            var mes = int.Parse(fechaStr.Substring(2, 2));
+            var dia = int.Parse(fechaStr.Substring(4, 2));
+
+            if (mes is < 1 or > 12) return null;
+            if (dia is < 1 or > 31) return null;
+
+            try
+            {
+                return new DateOnly(anio, mes, Math.Min(dia, DateTime.DaysInMonth(anio, mes)));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Homoclave del RFC (últimos 3 caracteres).
+    /// </summary>
+    public string Homoclave => Valor[^3..];
 
     private RfcProveedor(string valor)
     {
-        Valor = valor;
-        TipoPersona = valor.Length == 12 ? TipoPersonaRfc.Moral : TipoPersonaRfc.Fisica;
+        Valor = valor.ToUpperInvariant();
     }
 
-    // -------------------------------------------------------------------------
-    // Factory Methods
-    // -------------------------------------------------------------------------
+    #region Factory Methods
 
     /// <summary>
-    /// Crea una instancia con validación estructural completa del formato SAT.
+    /// Crea una instancia validada de <see cref="RfcProveedor"/>.
     /// </summary>
-    /// <param name="rfc">RFC en cualquier capitalización. Se normaliza internamente.</param>
-    /// <exception cref="DomainException">Si el formato no es RFC mexicano válido.</exception>
+    /// <param name="rfc">RFC del proveedor (12 o 13 caracteres).</param>
+    /// <exception cref="DomainException">Si el formato del RFC es inválido.</exception>
     public static RfcProveedor Crear(string rfc)
     {
         if (string.IsNullOrWhiteSpace(rfc))
             throw new DomainException("El RFC del proveedor no puede estar vacío.");
 
-        var normalizado = Normalizar(rfc);
+        var rfcLimpio = rfc.Trim().ToUpperInvariant().Replace("-", "").Replace(" ", "");
 
-        // Permitir RFCs genéricos del SAT
-        if (_rfcsGenericos.Contains(normalizado))
-            return new RfcProveedor(normalizado);
+        if (rfcLimpio.Length is not (12 or 13))
+            throw new DomainException(
+                $"El RFC debe tener 12 caracteres (persona moral) o 13 caracteres (persona física). " +
+                $"Longitud recibida: {rfcLimpio.Length}.");
 
-        if (!EsEstructuralmenteValido(normalizado, out var mensaje))
-            throw new DomainException(mensaje);
+        // Validar formato según tipo de persona
+        var esValido = rfcLimpio.Length == 12
+            ? _formatoPersonaMoral.IsMatch(rfcLimpio)
+            : _formatoPersonaFisica.IsMatch(rfcLimpio);
 
-        return new RfcProveedor(normalizado);
+        if (!esValido)
+            throw new DomainException(
+                $"El RFC '{MaskRfc(rfcLimpio)}' no tiene un formato válido según las reglas del SAT.");
+
+        // Advertencia para RFC genéricos (no lanzamos excepción, pero se registra)
+        if (_rfcGenericos.Contains(rfcLimpio))
+            throw new DomainException(
+                $"El RFC '{rfcLimpio}' es un RFC genérico que no es válido para proveedores registrados.");
+
+        return new RfcProveedor(rfcLimpio);
     }
 
     /// <summary>
-    /// Valida sin lanzar excepción.
-    /// Usado para validación carácter a carácter en el TextBox de registro (§Módulo 08).
+    /// Intenta crear una instancia sin lanzar excepción.
     /// </summary>
-    /// <param name="rfc">RFC a validar (acepta entrada parcial).</param>
-    /// <param name="estadoValidacion">Estado actual para controlar el color del borde en la UI.</param>
-    public static EstadoValidacionRfc ValidarProgresivamente(string? rfc)
+    public static bool TryCrear(string? rfc, out RfcProveedor? rfcProveedor, out string? error)
     {
-        if (string.IsNullOrEmpty(rfc))
-            return EstadoValidacionRfc.Vacio;
+        rfcProveedor = null;
+        error = null;
 
-        var normalizado = Normalizar(rfc);
-        var longitud = normalizado.Length;
-
-        // Durante la escritura: guiar al usuario sin penalizarlo prematuramente
-        if (longitud < 12)
-            return EstadoValidacionRfc.Parcial;
-
-        if (_rfcsGenericos.Contains(normalizado))
-            return EstadoValidacionRfc.Valido;
-
-        return EsEstructuralmenteValido(normalizado, out _)
-            ? EstadoValidacionRfc.Valido
-            : EstadoValidacionRfc.Invalido;
-    }
-
-    // -------------------------------------------------------------------------
-    // Enmascaramiento por rol — §3.2 "Principio de Mínimo Privilegio"
-    // -------------------------------------------------------------------------
-
-    /// <summary>
-    /// RFC completo — solo para roles con acceso fiscal (Administrador, Finanzas).
-    /// Ejemplo: ABCD860512XYZ
-    /// </summary>
-    public string ObtenerCompleto() => Valor;
-
-    /// <summary>
-    /// RFC enmascarado para roles sin acceso fiscal completo.
-    /// Expone las iniciales y la fecha, oculta la homoclave.
-    /// Ejemplo: ABCD860512*** (§Módulo 08, Módulo 09 README).
-    /// </summary>
-    public string ObtenerEnmascarado()
-    {
-        // Preserva todo menos la homoclave (últimos 3 caracteres)
-        var visibles = Valor[..^3];
-        return visibles + "***";
-    }
-
-    /// <summary>
-    /// Devuelve la representación adecuada según el rol del usuario.
-    /// Centraliza la lógica de enmascaramiento — nunca depender del ViewModel para esto.
-    /// </summary>
-    public string ObtenerSegunRol(bool tieneAccesoFiscal) =>
-        tieneAccesoFiscal ? ObtenerCompleto() : ObtenerEnmascarado();
-
-    // -------------------------------------------------------------------------
-    // Identidad de negocio
-    // -------------------------------------------------------------------------
-
-    /// <summary>
-    /// Compara RFCs sin importar capitalización.
-    /// Crítico para verificar la coincidencia RFC emisor ↔ proveedor en validación CFDI (§Módulo 10).
-    /// </summary>
-    public bool CoincideCon(string rfcAComparar) =>
-        string.Equals(Valor, Normalizar(rfcAComparar), StringComparison.OrdinalIgnoreCase);
-
-    // -------------------------------------------------------------------------
-    // Helpers privados
-    // -------------------------------------------------------------------------
-
-    private static string Normalizar(string rfc) =>
-        rfc.Trim().ToUpperInvariant().Replace(" ", "");
-
-    private static bool EsEstructuralmenteValido(string normalizado, out string mensaje)
-    {
-        mensaje = string.Empty;
-
-        if (_moral.IsMatch(normalizado) || _fisica.IsMatch(normalizado))
-            return true;
-
-        var longitud = normalizado.Length;
-
-        mensaje = longitud switch
+        if (string.IsNullOrWhiteSpace(rfc))
         {
-            < 12 => $"RFC incompleto ({longitud} de 12–13 caracteres requeridos).",
-            > 13 => $"RFC excede la longitud máxima ({longitud} caracteres; máximo 13).",
-            12   => $"Formato inválido para persona moral. Se esperaba: AAA######XX.",
-            _    => $"Formato inválido para persona física. Se esperaba: AAAA######XXX."
-        };
+            error = "El RFC no puede estar vacío.";
+            return false;
+        }
 
-        return false;
+        var rfcLimpio = rfc.Trim().ToUpperInvariant().Replace("-", "").Replace(" ", "");
+
+        if (rfcLimpio.Length is not (12 or 13))
+        {
+            error = $"El RFC debe tener 12 o 13 caracteres. Longitud: {rfcLimpio.Length}.";
+            return false;
+        }
+
+        var esValido = rfcLimpio.Length == 12
+            ? _formatoPersonaMoral.IsMatch(rfcLimpio)
+            : _formatoPersonaFisica.IsMatch(rfcLimpio);
+
+        if (!esValido)
+        {
+            error = "El formato del RFC no es válido.";
+            return false;
+        }
+
+        if (_rfcGenericos.Contains(rfcLimpio))
+        {
+            error = "El RFC genérico no es válido para proveedores registrados.";
+            return false;
+        }
+
+        rfcProveedor = new RfcProveedor(rfcLimpio);
+        return true;
     }
 
-    // -------------------------------------------------------------------------
-    // Presentación
-    // -------------------------------------------------------------------------
+    /// <summary>
+    /// Reconstituye un RfcProveedor desde su valor almacenado (sin validación completa).
+    /// Usado por el repositorio al cargar desde la base de datos.
+    /// </summary>
+    public static RfcProveedor DesdeValorAlmacenado(string valor)
+    {
+        if (string.IsNullOrWhiteSpace(valor))
+            throw new DomainException("El RFC almacenado no puede estar vacío.");
 
-    /// <summary>Enmascarado por defecto al convertir a cadena — principio de mínimo privilegio.</summary>
-    public override string ToString() => ObtenerEnmascarado();
-}
+        return new RfcProveedor(valor.Trim().ToUpperInvariant());
+    }
 
-/// <summary>Tipo de persona jurídica según estructura del RFC.</summary>
-public enum TipoPersonaRfc
-{
-    /// <summary>RFC de 12 caracteres: empresa, institución o sociedad.</summary>
-    Moral,
-    /// <summary>RFC de 13 caracteres: individuo con actividad empresarial o profesional.</summary>
-    Fisica
-}
+    #endregion
 
-/// <summary>
-/// Estado de validación progresiva para retroalimentación visual en tiempo real.
-/// Mapea directamente al color de borde del TextBox (§Módulo 08 README).
-/// </summary>
-public enum EstadoValidacionRfc
-{
-    /// <summary>Campo vacío — borde neutro.</summary>
-    Vacio,
-    /// <summary>Entrada parcial (&lt;12 chars) — borde neutro, sin error prematuro.</summary>
-    Parcial,
-    /// <summary>Formato completo y válido — borde verde.</summary>
-    Valido,
-    /// <summary>Longitud completa pero estructura inválida — borde rojo.</summary>
-    Invalido
+    #region Métodos de Dominio
+
+    /// <summary>
+    /// Determina si este RFC pertenece al mismo contribuyente que otro RFC.
+    /// Útil para detectar fraccionamiento (RN-002).
+    /// </summary>
+    public bool EsMismoContribuyente(RfcProveedor otro) =>
+        string.Equals(Valor, otro.Valor, StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>
+    /// Enmascara el RFC para mostrar en logs o UI (protección de datos sensibles).
+    /// Ejemplo: ABCD123456XXX -> ABCD****XXX
+    /// </summary>
+    public string Enmascarado() => MaskRfc(Valor);
+
+    #endregion
+
+    #region Helpers Privados
+
+    private static string MaskRfc(string rfc) =>
+        rfc.Length <= 7 ? "****" : $"{rfc[..4]}****{rfc[^3..]}";
+
+    #endregion
+
+    #region Presentación
+
+    /// <summary>
+    /// Devuelve el RFC formateado con guiones para visualización.
+    /// Ejemplo: ABCD-123456-XXX
+    /// </summary>
+    public string FormatoVisual() => EsPersonaFisica
+        ? $"{Valor[..4]}-{Valor.Substring(4, 6)}-{Valor[^3..]}"
+        : $"{Valor[..3]}-{Valor.Substring(3, 6)}-{Valor[^3..]}";
+
+    public override string ToString() => Valor;
+
+    #endregion
 }
