@@ -46,10 +46,10 @@ public class DomainExceptionTests
     public void BloqueoEdicionException_TieneCodigoCorrecto()
     {
         // Act
-        var ex = new BloqueoEdicionException("DSA-2026-001", "juan.perez", DateTime.Now);
+        var ex = new BloqueoEdicionException(123, "Solicitud", "juan.perez", DateTime.Now.AddMinutes(-10), DateTime.Now);
 
         // Assert
-        Assert.Equal("BLOQUEO_EDICION_RN005", ex.CodigoError);
+        Assert.Equal("RN005_BLOQUEO_EDICION", ex.CodigoError);
     }
 
     [Fact]
@@ -98,13 +98,13 @@ public class DomainExceptionTests
     {
         // Act
         var ex = new TransicionInvalidaException(
-            Enums.EstadoSolicitud.Pagada, 
+            Enums.EstadoSolicitud.Pagado, 
             Enums.EstadoSolicitud.Recepcionado, 
             "No se puede retroceder");
 
         // Assert
         Assert.Equal("TRANSICION_INVALIDA", ex.CodigoError);
-        Assert.Equal(Enums.EstadoSolicitud.Pagada, ex.EstadoActual);
+        Assert.Equal(Enums.EstadoSolicitud.Pagado, ex.EstadoActual);
         Assert.Equal(Enums.EstadoSolicitud.Recepcionado, ex.EstadoDestino);
     }
 }
