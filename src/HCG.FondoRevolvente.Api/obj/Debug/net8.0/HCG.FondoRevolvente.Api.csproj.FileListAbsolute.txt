@@ -150,3 +150,4 @@
 /home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/HCG.FondoRevolvente.Api.pdb
 /home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/HCG.FondoRevolvente.Api.genruntimeconfig.cache
 /home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/obj/Debug/net8.0/ref/HCG.FondoRevolvente.Api.dll
+/home/jesuslangarica/HCG.FondoRevolvente/src/HCG.FondoRevolvente.Api/bin/Debug/net8.0/FluentValidation.DependencyInjectionExtensions.dll

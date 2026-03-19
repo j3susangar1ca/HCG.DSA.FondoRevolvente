@@ -79,6 +79,18 @@
           }
         }
       },
+      "FluentValidation.DependencyInjectionExtensions/11.8.1": {
+        "dependencies": {
+          "FluentValidation": "11.8.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.8.1.0"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
@@ -419,29 +431,29 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/8.0.0": {
+      "Microsoft.EntityFrameworkCore/8.0.2": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "8.0.0",
-          "Microsoft.EntityFrameworkCore.Analyzers": "8.0.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "8.0.2",
+          "Microsoft.EntityFrameworkCore.Analyzers": "8.0.2",
           "Microsoft.Extensions.Caching.Memory": "8.0.0",
           "Microsoft.Extensions.Logging": "8.0.0"
         },
         "runtime": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "8.0.2.0",
+            "fileVersion": "8.0.224.6803"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/8.0.0": {
+      "Microsoft.EntityFrameworkCore.Abstractions/8.0.2": {
         "runtime": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "8.0.2.0",
+            "fileVersion": "8.0.224.6803"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/8.0.0": {},
+      "Microsoft.EntityFrameworkCore.Analyzers/8.0.2": {},
       "Microsoft.EntityFrameworkCore.Design/8.0.0": {
         "dependencies": {
           "Humanizer.Core": "2.14.1",
@@ -459,7 +471,7 @@
       },
       "Microsoft.EntityFrameworkCore.Relational/8.0.0": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "8.0.0",
+          "Microsoft.EntityFrameworkCore": "8.0.2",
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0"
         },
         "runtime": {
@@ -976,15 +988,19 @@
       "HCG.FondoRevolvente.Application/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
-          "FluentValidation": "11.8.1",
+          "FluentValidation.DependencyInjectionExtensions": "11.8.1",
           "HCG.FondoRevolvente.Domain": "1.0.0",
-          "MediatR": "12.2.0"
+          "MediatR": "12.2.0",
+          "Microsoft.EntityFrameworkCore": "8.0.2"
         },
         "runtime": {
           "HCG.FondoRevolvente.Application.dll": {}
         }
       },
       "HCG.FondoRevolvente.Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
+        },
         "runtime": {
           "HCG.FondoRevolvente.Domain.dll": {}
         }
@@ -1053,6 +1069,13 @@
       "sha512": "sha512-N72rnlE99XYB7EGA1u9y7m7kNTTynqOPBhZqDE8zr1Y0aSR4t5si94LRA7UVdAV09GaXWCErW+EiFhfbg3DSbg==",
       "path": "fluentvalidation/11.8.1",
       "hashPath": "fluentvalidation.11.8.1.nupkg.sha512"
+    },
+    "FluentValidation.DependencyInjectionExtensions/11.8.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Yyme2uCHnf+HawEHUEj7PguR54TPkx1HJT93/POvHT4xONvUrNfLg3Zt2NUAmIbhMjplb6TPLN8DD9AA7B/3QA==",
+      "path": "fluentvalidation.dependencyinjectionextensions/11.8.1",
+      "hashPath": "fluentvalidation.dependencyinjectionextensions.11.8.1.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -1145,26 +1168,26 @@
       "path": "microsoft.data.sqlclient.sni.runtime/5.1.1",
       "hashPath": "microsoft.data.sqlclient.sni.runtime.5.1.1.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore/8.0.0": {
+    "Microsoft.EntityFrameworkCore/8.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-SoODat83pGQUpWB9xULdMX6tuKpq/RTXDuJ2WeC1ldUKcKzLkaFJD1n+I0nOLY58odez/e7z8b6zdp235G/kyg==",
-      "path": "microsoft.entityframeworkcore/8.0.0",
-      "hashPath": "microsoft.entityframeworkcore.8.0.0.nupkg.sha512"
+      "sha512": "sha512-6QlvBx4rdawW3AkkCsGVV+8qRLk34aknV5JD40s1hbVR18vKmT2KDl2DW83nHcPX7f4oebQ3BD1UMNCI/gkE0g==",
+      "path": "microsoft.entityframeworkcore/8.0.2",
+      "hashPath": "microsoft.entityframeworkcore.8.0.2.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/8.0.0": {
+    "Microsoft.EntityFrameworkCore.Abstractions/8.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-VR22s3+zoqlVI7xauFKn1znSIFHO8xuILT+noSwS8bZCKcHz0ydkTDQMuaxSa5WBaQrZmwtTz9rmRvJ7X8mSPQ==",
-      "path": "microsoft.entityframeworkcore.abstractions/8.0.0",
-      "hashPath": "microsoft.entityframeworkcore.abstractions.8.0.0.nupkg.sha512"
+      "sha512": "sha512-DjDKp++BTKFZmX+xLTow7grQTY+pImKfhGW68Zf8myiL3zyJ3b8RZbnLsWGNCqKQIF6hJIz/zA/zmERobFwV0A==",
+      "path": "microsoft.entityframeworkcore.abstractions/8.0.2",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.8.0.2.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/8.0.0": {
+    "Microsoft.EntityFrameworkCore.Analyzers/8.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZXxEeLs2zoZ1TA+QoMMcw4f3Tirf8PzgdDax8RoWo0dxI2KmqiEGWYjhm2B/XyWfglc6+mNRyB8rZiQSmxCpeg==",
-      "path": "microsoft.entityframeworkcore.analyzers/8.0.0",
-      "hashPath": "microsoft.entityframeworkcore.analyzers.8.0.0.nupkg.sha512"
+      "sha512": "sha512-LI7awhc0fiAKvcUemsqxXUWqzAH9ywTSyM1rpC1un4p5SE1bhr5nRLvyRVbKRzKakmnNNY3to8NPDnoySEkxVw==",
+      "path": "microsoft.entityframeworkcore.analyzers/8.0.2",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.8.0.2.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Design/8.0.0": {
       "type": "package",
