@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 17.0.31903.59
@@ -13,6 +13,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCG.FondoRevolvente.Api", "src\HCG.FondoRevolvente.Api\HCG.FondoRevolvente.Api.csproj", "{7B35FC2B-65D4-8J6G-C2BG-5G6E7F8A9BAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCG.FondoRevolvente.Client", "src\HCG.FondoRevolvente.Client\HCG.FondoRevolvente.Client.csproj", "{8C46GD3C-76E5-9K7H-D3CH-6H7F8A9BABCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{126720A8-87CF-4365-BD54-C97FBAD72C04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCG.FondoRevolvente.Domain.Tests", "tests\HCG.FondoRevolvente.Domain.Tests\HCG.FondoRevolvente.Domain.Tests.csproj", "{31D1867C-0BEA-4F8A-87FB-07F70346B936}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,8 +48,15 @@ Global
 		{8C46GD3C-76E5-9K7H-D3CH-6H7F8A9BABCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C46GD3C-76E5-9K7H-D3CH-6H7F8A9BABCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C46GD3C-76E5-9K7H-D3CH-6H7F8A9BABCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31D1867C-0BEA-4F8A-87FB-07F70346B936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D1867C-0BEA-4F8A-87FB-07F70346B936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D1867C-0BEA-4F8A-87FB-07F70346B936}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D1867C-0BEA-4F8A-87FB-07F70346B936}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{31D1867C-0BEA-4F8A-87FB-07F70346B936} = {126720A8-87CF-4365-BD54-C97FBAD72C04}
 	EndGlobalSection
 EndGlobal
