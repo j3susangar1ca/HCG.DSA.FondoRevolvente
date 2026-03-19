@@ -65,7 +65,8 @@ public class DomainExceptionTests
 
         // Assert
         Assert.Equal("RN002_FRACCIONAMIENTO_DETECTADO", ex.CodigoError);
-        Assert.Equal("ABCD****XXX", ex.RfcProveedor);
+        Assert.Equal("ABCD123456XXX", ex.RfcProveedor); // Raw property
+        Assert.Equal("ABCD****XXX", ex.DatosAdicionales["RfcProveedor"]); // Masked data
         Assert.Contains("150,000", ex.Message);
     }
 }
