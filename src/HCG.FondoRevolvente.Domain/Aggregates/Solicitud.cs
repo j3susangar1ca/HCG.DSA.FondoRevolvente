@@ -15,7 +15,7 @@ public class Solicitud
     public int Id { get; private set; }
 
     /// <summary>Identificador único canónico (ej: DSA-2026-001).</summary>
-    public FolioDSA Folio { get; private set; }
+    public FolioDSA Folio { get; private set; } = null!;
 
     /// <summary>Estado actual de la solicitud.</summary>
     public EstadoSolicitud Estado { get; private set; }
@@ -24,13 +24,13 @@ public class Solicitud
     public FaseProceso Fase { get; private set; }
 
     /// <summary>Monto total de la solicitud (validado por RN-001).</summary>
-    public MontoFondoRevolvente Monto { get; private set; }
+    public MontoFondoRevolvente Monto { get; private set; } = null!;
 
     /// <summary>Descripción detallada de la necesidad o bien a adquirir.</summary>
-    public string Descripcion { get; private set; }
+    public string Descripcion { get; private set; } = null!;
 
     /// <summary>Usuario responsable de la captura inicial.</summary>
-    public string Solicitante { get; private set; }
+    public string Solicitante { get; private set; } = null!;
 
     /// <summary>Fecha de creación inicial.</summary>
     public DateTime FechaCreacion { get; private set; }
@@ -46,7 +46,7 @@ public class Solicitud
     private Solicitud() { } // Para EF Core
 
     /// <summary>
-    /// Crea una nueva solicitud en estado Borrador.
+    /// Crea una nueva solicitud en estado Recepcionado.
     /// </summary>
     public Solicitud(FolioDSA folio, MontoFondoRevolvente monto, string descripcion, string solicitante)
     {
@@ -54,11 +54,11 @@ public class Solicitud
         Monto = monto;
         Descripcion = descripcion;
         Solicitante = solicitante;
-        Estado = EstadoSolicitud.Borrador;
-        Fase = FaseProceso.Captura;
+        Estado = EstadoSolicitud.Recepcionado;
+        Fase = FaseProceso.RecepcionValidacionInicial;
         FechaCreacion = DateTime.UtcNow;
 
-        RegistrarHito(TipoHito.Creacion, "Solicitud creada en borrador", solicitante);
+        RegistrarHito(TipoHito.Creacion, "Solicitud recepcionada e iniciada", solicitante);
     }
 
     /// <summary>
@@ -66,13 +66,13 @@ public class Solicitud
     /// </summary>
     public void AgregarCotizacion(int proveedorId, MontoFondoRevolvente monto, string archivoUri, string usuario)
     {
-        if (Estado != EstadoSolicitud.Borrador && Estado != EstadoSolicitud.PendienteValidacion)
+        if (Estado != EstadoSolicitud.SinCotizaciones && Estado != EstadoSolicitud.EnCotizacion)
             throw new DomainException($"No se pueden agregar cotizaciones en el estado actual: {Estado}");
 
         var cotizacion = new Cotizacion(proveedorId, Id, monto, archivoUri);
         _cotizaciones.Add(cotizacion);
 
-        Fase = FaseProceso.Cotizacion;
+        Fase = FaseProceso.EstudioMercadoCotizacion;
         RegistrarHito(TipoHito.DocumentoAdjunto, $"Cotización agregada por {monto}", usuario, archivoUri);
     }
 
@@ -105,6 +105,7 @@ public class Solicitud
         if (!string.IsNullOrEmpty(motivo)) mensaje += $". Motivo: {motivo}";
 
         Estado = nuevoEstado;
+        Fase = nuevoEstado.ObtenerFase(); // Actualizar fase automáticamente basada en el estado
         RegistrarHito(TipoHito.CambioEstado, mensaje, usuario);
     }
 

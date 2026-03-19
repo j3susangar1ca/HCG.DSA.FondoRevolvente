@@ -20,10 +20,10 @@ public class Hito
     public TipoHito Tipo { get; private set; }
 
     /// <summary>Descripción detallada del evento.</summary>
-    public string Mensaje { get; private set; }
+    public string Mensaje { get; private set; } = null!;
 
     /// <summary>Usuario que originó el evento.</summary>
-    public string Usuario { get; private set; }
+    public string Usuario { get; private set; } = null!;
 
     /// <summary>Referencia opcional a un archivo relacionado (ej: PDF de CFDI).</summary>
     public string? ReferenciaAdjunto { get; private set; }

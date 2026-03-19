@@ -17,10 +17,10 @@ public class Cotizacion
     public int SolicitudId { get; private set; }
 
     /// <summary>Monto total de la cotización, validado bajo la RN-001.</summary>
-    public MontoFondoRevolvente Monto { get; private set; }
+    public MontoFondoRevolvente Monto { get; private set; } = null!;
 
     /// <summary>Ruta o identificador del archivo PDF en el almacenamiento SMB.</summary>
-    public string ArchivoAdjuntoUri { get; private set; }
+    public string ArchivoAdjuntoUri { get; private set; } = null!;
 
     /// <summary>Fecha en que se cargó la cotización al sistema.</summary>
     public DateTime FechaCarga { get; private set; }

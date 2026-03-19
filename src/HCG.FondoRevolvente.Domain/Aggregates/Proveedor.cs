@@ -11,10 +11,10 @@ public class Proveedor
     public int Id { get; private set; }
 
     /// <summary>Nombre comercial o razón social del proveedor.</summary>
-    public string RazonSocial { get; private set; }
+    public string RazonSocial { get; private set; } = null!;
 
     /// <summary>RFC validado estructuralmente y enmascarado según rol.</summary>
-    public RfcProveedor Rfc { get; private set; }
+    public RfcProveedor Rfc { get; private set; } = null!;
 
     /// <summary>Indica si el proveedor está habilitado para recibir nuevas solicitudes.</summary>
     public bool EstaActivo { get; private set; }
