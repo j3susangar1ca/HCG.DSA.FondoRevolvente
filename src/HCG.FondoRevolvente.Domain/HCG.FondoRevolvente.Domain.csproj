@@ -7,5 +7,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <InternalsVisibleTo Include="HCG.FondoRevolvente.Domain.Tests" />
   </ItemGroup>
 </Project>
