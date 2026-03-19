@@ -6,18 +6,27 @@ namespace HCG.FondoRevolvente.Domain.Enums;
 /// </summary>
 public enum FaseProceso
 {
-    /// <summary>Fase 1: Preparación y captura de la solicitud.</summary>
-    Captura,
+    /// <summary>Fase 1: Recepción y Validación Inicial.</summary>
+    RecepcionValidacionInicial = 1,
 
-    /// <summary>Fase 2: Cotizaciones y selección de proveedor ganador (RN-003).</summary>
-    Cotizacion,
+    /// <summary>Fase 2: Autorización por el Comité de Adquisiciones y Arrendamientos.</summary>
+    AutorizacionCAA = 2,
 
-    /// <summary>Fase 3: Validación fiscal del CFDI ante el SAT (RN-004).</summary>
-    ValidacionFiscal,
+    /// <summary>Fase 3: Estudio de Mercado / Cotización.</summary>
+    EstudioMercadoCotizacion = 3,
 
-    /// <summary>Fase 4: Revisión técnica y autorización administrativa.</summary>
-    Autorizacion,
+    /// <summary>Fase 4: Selección de Proveedor / Pedido.</summary>
+    SeleccionProveedorPedido = 4,
 
-    /// <summary>Fase 5: Proceso de pago y cierre del expediente.</summary>
-    Pago
+    /// <summary>Fase 5: Entrega de Bienes o Servicios.</summary>
+    EntregaBienesServicios = 5,
+
+    /// <summary>Fase 6: Validación Fiscal CFDI.</summary>
+    ValidacionFiscalCFDI = 6,
+
+    /// <summary>Fase 7: Pago.</summary>
+    Pago = 7,
+
+    /// <summary>Fase 8: Cierre del Expediente.</summary>
+    CierreExpediente = 8
 }
