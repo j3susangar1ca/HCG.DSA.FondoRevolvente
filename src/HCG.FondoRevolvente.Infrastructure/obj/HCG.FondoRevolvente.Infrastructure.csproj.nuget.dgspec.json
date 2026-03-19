@@ -44,7 +44,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[13.0.1, )"
             },
             "FluentValidation": {
               "target": "Package",
@@ -170,13 +170,13 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.5, )"
+            },
             "Polly": {
               "target": "Package",
               "version": "[8.2.0, )"
-            },
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.8.5, )"
             }
           },
           "imports": [
