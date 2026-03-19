@@ -156,8 +156,7 @@ public sealed record RfcProveedor
             < 12 => $"RFC incompleto ({longitud} de 12–13 caracteres requeridos).",
             > 13 => $"RFC excede la longitud máxima ({longitud} caracteres; máximo 13).",
             12   => $"Formato inválido para persona moral. Se esperaba: AAA######XX.",
-            13   => $"Formato inválido para persona física. Se esperaba: AAAA######XXX.",
-            _    => "RFC con formato no reconocido."
+            _    => $"Formato inválido para persona física. Se esperaba: AAAA######XXX."
         };
 
         return false;
