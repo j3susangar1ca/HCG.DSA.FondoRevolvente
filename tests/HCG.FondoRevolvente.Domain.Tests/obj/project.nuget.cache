@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "QH3Pap1yPmHI1N+fX+pWdpUm8oBhDQSrOb6LmJi8TWCr9tegs1I3fHxVNIhre4GFcN3YT2FmUykedss3yf5XKQ==",
+  "dgSpecHash": "XIGmnkBit3UrAMn1GIk9V8q1mc5IskGDf86i9YuhGqQVvudM4sXOgye9UHSVN8vl/ZAExz5uBKsAeSas/J9Tzg==",
   "success": true,
   "projectFilePath": "/home/jesuslangarica/HCG.FondoRevolvente/tests/HCG.FondoRevolvente.Domain.Tests/HCG.FondoRevolvente.Domain.Tests.csproj",
   "expectedPackageFiles": [
     "/home/jesuslangarica/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.codecoverage/17.6.0/microsoft.codecoverage.17.6.0.nupkg.sha512",
+    "/home/jesuslangarica/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.net.test.sdk/17.6.0/microsoft.net.test.sdk.17.6.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/home/jesuslangarica/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
