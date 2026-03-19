@@ -51,7 +51,7 @@ public class CrearSolicitudCommandHandler : IRequestHandler<CrearSolicitudComman
         }
         catch (Exception ex)
         {
-            return Result<int>.Failure(new[] { ex.Message });
+            return Result<int>.Failure(ex.Message);
         }
     }
 }
